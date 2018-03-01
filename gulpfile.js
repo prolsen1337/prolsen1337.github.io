@@ -1,11 +1,11 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var browserSync = require('browser-sync').create();
 var header = require('gulp-header');
 var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
-var browserSync = require('browser-sync').create();
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -50,11 +50,16 @@ gulp.task('vendor', function() {
     ])
     .pipe(gulp.dest('./vendor/jquery-easing'))
 
-  // Vide.js
+  // Simple Line Icons
   gulp.src([
-      './node_modules/vide/dist/*'
+      './node_modules/simple-line-icons/fonts/**',
     ])
-    .pipe(gulp.dest('./vendor/vide'))
+    .pipe(gulp.dest('./vendor/simple-line-icons/fonts'))
+
+  gulp.src([
+      './node_modules/simple-line-icons/css/**',
+    ])
+    .pipe(gulp.dest('./vendor/simple-line-icons/css'))
 
 });
 
